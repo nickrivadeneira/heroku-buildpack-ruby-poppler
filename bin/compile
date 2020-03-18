@@ -99,7 +99,9 @@ else
   cd poppler-${POPPLER_VERSION}
   # --enable-libopenjpeg=unmaintained uses the internal JPEG lib. The libraries
   # for the other options are not available on Heroku.
-  ./configure --prefix="$TARGET_DIR" --enable-libopenjpeg=unmaintained | indent
+  mkdir build
+  cd build
+  cmake ..
   make | indent
   make install | indent
   make clean | indent
