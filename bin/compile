@@ -23,7 +23,7 @@ WORKING_DIR="${BUILDPACK_DIR}/tmp/"
 TARGET_DIR="${BUILD_DIR}/vendor/poppler"
 CACHED_PRECOMPILED_PACKAGE_DIR="${CACHE_DIR}/vendor/poppler"
 
-POPPLER_VERSION="0.68.0"
+POPPLER_VERSION="0.83.0"
 PRECOMPILED_PACKAGE_FILENAME="poppler-${POPPLER_VERSION}-compiled.tar.gz"
 CACHED_PRECOMPILED_PACKAGE_PATH="${CACHED_PRECOMPILED_PACKAGE_DIR}/${PRECOMPILED_PACKAGE_FILENAME}"
 
@@ -101,7 +101,6 @@ else
     http://archive.ubuntu.com/ubuntu/pool/universe/o/openjpeg2/openjpeg2_2.3.0-2build0.18.04.1.debian.tar.xz | indent
   dpkg-source -x openjpeg2_2.3.0-2build0.18.04.1.dsc | indent
   pushd openjpeg2-2.3.0/
-    CMAKE_PREFIX_PATH="${BUILD_DIR}/vendor/openjpeg:$CMAKE_PREFIX_PATH"
     mkdir build
     cd build
     cmake .. -DCMAKE_INSTALL_PREFIX="${BUILD_DIR}/vendor/openjpeg"
@@ -116,7 +115,7 @@ else
   # for the other options are not available on Heroku.
   mkdir build
   cd build
-  cmake ..
+  CMAKE_PREFIX_PATH="${BUILD_DIR}/vendor/openjpeg:$CMAKE_PREFIX_PATH" cmake ..
   make | indent
   make install | indent
   make clean | indent
