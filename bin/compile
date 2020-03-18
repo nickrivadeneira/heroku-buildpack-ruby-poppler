@@ -101,9 +101,10 @@ else
     http://archive.ubuntu.com/ubuntu/pool/universe/o/openjpeg2/openjpeg2_2.3.0-2build0.18.04.1.debian.tar.xz | indent
   dpkg-source -x openjpeg2_2.3.0-2build0.18.04.1.dsc | indent
   pushd openjpeg2-2.3.0/
+    CMAKE_PREFIX_PATH="${BUILD_DIR}/vendor/openjpeg:$CMAKE_PREFIX_PATH"
     mkdir build
     cd build
-    cmake .. -DCMAKE_INSTALL_PREFIX="$TARGET_DIR"
+    cmake .. -DCMAKE_INSTALL_PREFIX="${BUILD_DIR}/vendor/openjpeg"
     make | indent
     make install | indent
     make clean | indent
