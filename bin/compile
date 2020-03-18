@@ -116,7 +116,7 @@ else
   mkdir build
   cd build
   # CMAKE_PREFIX_PATH="${BUILD_DIR}/vendor/openjpeg:$CMAKE_PREFIX_PATH" cmake ..
-  cmake .. -DENABLE_LIBOPENJPEG="none"
+  cmake .. -DENABLE_LIBOPENJPEG="unmaintained" -DCMAKE_INSTALL_PREFIX="$TARGET_DIR"
   make | indent
   make install | indent
   make clean | indent
