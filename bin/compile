@@ -23,7 +23,7 @@ WORKING_DIR="${BUILDPACK_DIR}/tmp/"
 TARGET_DIR="${BUILD_DIR}/vendor/poppler"
 CACHED_PRECOMPILED_PACKAGE_DIR="${CACHE_DIR}/vendor/poppler"
 
-POPPLER_VERSION="0.59.0"
+POPPLER_VERSION="0.62.0"
 PRECOMPILED_PACKAGE_FILENAME="poppler-${POPPLER_VERSION}-compiled.tar.gz"
 CACHED_PRECOMPILED_PACKAGE_PATH="${CACHED_PRECOMPILED_PACKAGE_DIR}/${PRECOMPILED_PACKAGE_FILENAME}"
 
@@ -67,11 +67,11 @@ else
   popd
 
   topic "Installing gobject-introspection"
-  wget --no-verbose --no-clobber http://archive.ubuntu.com/ubuntu/pool/main/g/gobject-introspection/gobject-introspection_1.46.0-3ubuntu1.dsc \
-    http://archive.ubuntu.com/ubuntu/pool/main/g/gobject-introspection/gobject-introspection_1.46.0.orig.tar.xz \
-    http://archive.ubuntu.com/ubuntu/pool/main/g/gobject-introspection/gobject-introspection_1.46.0-3ubuntu1.debian.tar.xz | indent
-  dpkg-source -x gobject-introspection_1.46.0-3ubuntu1.dsc | indent
-  pushd gobject-introspection-1.46.0/
+  wget --no-verbose --no-clobber http://archive.ubuntu.com/ubuntu/pool/main/g/gobject-introspection/gobject-introspection_1.56.1-1.dsc \
+    http://archive.ubuntu.com/ubuntu/pool/main/g/gobject-introspection/gobject-introspection_1.56.1.orig.tar.xz \
+    http://archive.ubuntu.com/ubuntu/pool/main/g/gobject-introspection/gobject-introspection_1.56.1-1.debian.tar.xz | indent
+  dpkg-source -x gobject-introspection_1.56.1-1.dsc | indent
+  pushd gobject-introspection-1.56.1/
     PATH="${WORKING_DIR}/flex/bin:$PATH" ./configure --prefix="$TARGET_DIR" | indent
     PATH="${WORKING_DIR}/flex/bin:$PATH" make | indent
     PATH="${WORKING_DIR}/flex/bin:$PATH" make install | indent
