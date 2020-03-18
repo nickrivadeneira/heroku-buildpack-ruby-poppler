@@ -95,32 +95,16 @@ else
   wget --no-verbose --no-clobber https://poppler.freedesktop.org/poppler-${POPPLER_VERSION}.tar.xz | indent
   tar -xf poppler-${POPPLER_VERSION}.tar.xz --skip-old-files | indent
 
-  # topic "Installing libopenjpeg2"
-  # wget --no-verbose --no-clobber http://archive.ubuntu.com/ubuntu/pool/universe/o/openjpeg2/openjpeg2_2.3.0-2build0.18.04.1.dsc \
-  #   http://archive.ubuntu.com/ubuntu/pool/universe/o/openjpeg2/openjpeg2_2.3.0.orig.tar.gz \
-  #   http://archive.ubuntu.com/ubuntu/pool/universe/o/openjpeg2/openjpeg2_2.3.0-2build0.18.04.1.debian.tar.xz | indent
-  # dpkg-source -x openjpeg2_2.3.0-2build0.18.04.1.dsc | indent
-  # pushd openjpeg2-2.3.0/
-  #   mkdir build
-  #   cd build
-  #   cmake .. -DCMAKE_INSTALL_PREFIX="${BUILD_DIR}/vendor/openjpeg"
-  #   make | indent
-  #   make install | indent
-  #   make clean | indent
-  # popd
-
   topic "Building poppler-${POPPLER_VERSION}"
   cd poppler-${POPPLER_VERSION}
   # --enable-libopenjpeg=unmaintained uses the internal JPEG lib. The libraries
   # for the other options are not available on Heroku.
   mkdir build
   cd build
-  # CMAKE_PREFIX_PATH="${BUILD_DIR}/vendor/openjpeg:$CMAKE_PREFIX_PATH" cmake ..
   cmake .. -DENABLE_LIBOPENJPEG="unmaintained" -DCMAKE_INSTALL_PREFIX="$TARGET_DIR"
   make | indent
   make install | indent
   make clean | indent
-  make distclean | indent
 
   topic "Caching precompiled package"
   cd $CACHED_PRECOMPILED_PACKAGE_DIR
